@@ -3,8 +3,7 @@ const toNumbers = (digits) => digits.split('').map(d => parseInt(d))
 const matches = (n1, n2) => n1 === n2
 
 const captcha = (digits) => {
-  const numbers = toNumbers(digits)
-  numbers.push(numbers[0])
+  const numbers = [...toNumbers(digits), toNumbers(digits)[0]]
 
   return numbers.reduce((sum, n, i, numbers) => matches(n, numbers[i + 1]) ? sum + n : sum, 0)
 }
