@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import { checksum, lineChecksum } from './checksum'
+import { checksum, minMaxDiff, divisible } from './checksum'
 
 const inputString = '116\t1470\t2610\t179\t2161\t2690\t831\t1824\t2361\t1050\t2201\t118\t145\t2275\t2625\t2333\n' +
   '976\t220\t1129\t553\t422\t950\t332\t204\t1247\t1092\t1091\t159\t174\t182\t984\t713\n' +
@@ -21,16 +21,15 @@ const inputString = '116\t1470\t2610\t179\t2161\t2690\t831\t1824\t2361\t1050\t22
 
 describe('The checksum', () => {
   describe('Part 1', () => {
-
     it('calculates checksum for a line', () => {
-      expect(lineChecksum([5, 1, 9, 5])).to.equal(8)
-      expect(lineChecksum([7, 5, 3])).to.equal(4)
-      expect(lineChecksum([2, 4, 6, 8])).to.equal(6)
+      expect(minMaxDiff([5, 1, 9, 5])).to.equal(8)
+      expect(minMaxDiff([7, 5, 3])).to.equal(4)
+      expect(minMaxDiff([2, 4, 6, 8])).to.equal(6)
     })
 
     it('calculates checksum for a big line', () => {
       const line = [116, 1470, 2610, 179, 2161, 2690, 831, 1824, 2361, 1050, 2201, 118, 145, 2275, 2625, 2333]
-      expect(lineChecksum(line)).to.equal(2690 - 116)
+      expect(minMaxDiff(line)).to.equal(2690 - 116)
     })
 
     describe('Solving', () => {
@@ -40,12 +39,36 @@ describe('The checksum', () => {
           [7, 5, 3],
           [2, 4, 6, 8]
         ]
-        expect(checksum(example)).to.equal(18)
+        expect(checksum(example, minMaxDiff)).to.equal(18)
       })
 
       it('for my input', () => {
         const spreadsheet = inputString.split('\n').map(i => i.split('\t'))
-        expect(checksum(spreadsheet)).to.equal(32020)
+        expect(checksum(spreadsheet, minMaxDiff)).to.equal(32020)
+      })
+    })
+  })
+
+  describe('Part 2', () => {
+    it('calculates checksum for a line', () => {
+      expect(divisible([5, 9, 2, 8])).to.equal(4)
+      expect(divisible([9, 4, 7, 3])).to.equal(3)
+      expect(divisible([3, 8, 6, 5])).to.equal(2)
+    })
+
+    describe('Solving', () => {
+      it('for the example is 9', () => {
+        const example = [
+          [5, 9, 2, 8],
+          [9, 4, 7, 3],
+          [3, 8, 6, 5]
+        ]
+        expect(checksum(example, divisible)).to.equal(9)
+      })
+
+      it('for my input', () => {
+        const spreadsheet = inputString.split('\n').map(i => i.split('\t'))
+        expect(checksum(spreadsheet, divisible)).to.equal(236)
       })
     })
   })
