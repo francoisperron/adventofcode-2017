@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import { inSquare, offsetInSquare, shortestPathTo } from './spiral-memory'
+import { inSquare, largerThan, offsetInSquare, shortestPathTo } from './spiral-memory'
 
 const range = (min, max) => Array.from(Array(max - min + 1).keys()).map(n => n + min)
 
@@ -69,8 +69,25 @@ describe('The spiral memory', () => {
       it('is 31 for 1024', () => {
         expect(shortestPathTo(1024)).to.equal(31)
       })
-      it('is 31 for my input', () => {
+      it('is 480 for my input', () => {
         expect(shortestPathTo(347991)).to.equal(480)
+      })
+    })
+  })
+
+  describe('Part 2', () => {
+    describe('Solving', () => {
+      it('for 1 is 2', () => {
+        expect(largerThan(1)).to.equal(2)
+      })
+      it('for 4 is 5', () => {
+        expect(largerThan(4)).to.equal(5)
+      })
+      it('for 5 is 10', () => {
+        expect(largerThan(5)).to.equal(10)
+      })
+      it('for 349975 for my input', () => {
+        expect(largerThan(347991)).to.equal(349975)
       })
     })
   })

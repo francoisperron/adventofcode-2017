@@ -1,3 +1,5 @@
+import {readFileSync} from "fs";
+
 const inSquare = (location) => {
   let corner = 3
   let squareNumber = 1
@@ -24,4 +26,10 @@ const shortestPathTo = (location) => {
   return squareNumber + offset
 }
 
-export { inSquare, offsetInSquare, shortestPathTo }
+const largerThan = (number) => {
+  // see https://oeis.org/A141481/b141481.txt
+  const results = readFileSync('src/day03/spiral.txt').toString().split("\n").map(r => parseInt(r))
+  return results.filter(r => r > number)[0]
+}
+
+export { inSquare, offsetInSquare, shortestPathTo, largerThan }
