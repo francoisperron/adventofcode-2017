@@ -3,7 +3,7 @@ import { readFileSync } from 'fs'
 const programOf = (program) => {
   const name = program[0].split(' (')[0]
   const weigth = parseInt(program[0].split(' (')[1].trim().slice(0, -1))
-  const holding = program.length > 1 ? program[1].split(',').map((p => p.trim())) : []
+  const holding = program.length > 1 ? program[1].split(',').map(p => p.trim()) : []
   return {name, weigth, holding}
 }
 

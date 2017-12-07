@@ -1,6 +1,5 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import { readFileSync } from 'fs'
 import { bottomProgram, holdingWeigth, parseFile, unbalanced } from './tower'
 
 describe('This program tower', () => {
