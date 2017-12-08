@@ -45,3 +45,15 @@ export const largestValueInRegisters = (file) => {
   instructions.forEach(i => process(i, regs))
   return Math.max(...instructions.map(i => valueOf(i.reg, regs)))
 }
+
+export const highestValueEverHeld = (file) => {
+  const instructions = readLines(file).map(l => instructionOf(l))
+  const regs = {}
+
+  let max = 0
+  instructions.forEach(i => {
+    process(i, regs)
+    max = Math.max(max, ...instructions.map(i => valueOf(i.reg, regs)))
+  })
+  return max
+}

@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import { conditionPasses, instructionOf, largestValueInRegisters, valueOf } from './cpu'
+import { conditionPasses, highestValueEverHeld, instructionOf, largestValueInRegisters, valueOf } from './cpu'
 
 describe('The CPU\'s instructions', () => {
   describe('Part 1', () => {
@@ -34,6 +34,17 @@ describe('The CPU\'s instructions', () => {
       })
       it('for my input', () => {
         expect(largestValueInRegisters('src/day08/input.txt')).to.equal(4888)
+      })
+    })
+  })
+
+  describe('Part 2', () => {
+    describe('Solving', () => {
+      it('for the example', () => {
+        expect(highestValueEverHeld('src/day08/example.txt')).to.equal(10)
+      })
+      it('for my input', () => {
+        expect(highestValueEverHeld('src/day08/input.txt')).to.equal(7774)
       })
     })
   })
