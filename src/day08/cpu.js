@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs'
 import { readLines } from '../read-file'
 
 export const valueOf = (reg, regs) => {
@@ -27,13 +26,13 @@ export const conditionPasses = (condition, regs) => {
     '<=': (value, test) => value <= test,
     '>=': (value, test) => value >= test,
     '==': (value, test) => value === test,
-    '!=': (value, test) => value !== test,
+    '!=': (value, test) => value !== test
   }
   return conditions[condition.operator](value, condition.value)
 }
 
 const process = (i, regs) => {
-  if(conditionPasses(i.condition, regs)){
+  if (conditionPasses(i.condition, regs)) {
     regs[i.reg] = valueOf(i.reg, regs) + i.mod
   }
 }
