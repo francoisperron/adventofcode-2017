@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import { knotHash, tie } from './knot-hash'
+import { initKnot, knotDenseHash, knotHash, tie, toHexadecimal, xorOf } from './knot-hash'
 
 describe('The knot hash', () => {
   describe('Part 1', () => {
@@ -44,17 +44,36 @@ describe('The knot hash', () => {
     describe('Solving', () => {
       it('for the example', () => {
         const list = [0, 1, 2, 3, 4]
+        const initialKnot = {...initKnot(), list}
         const lengths = [3, 4, 1, 5]
-        const hash = knotHash(list, lengths)
+        const hash = knotHash(initialKnot, lengths)
 
         expect(hash.list[0] * hash.list[1]).to.equal(12)
       })
-      it('for my input example', () => {
-        const list = [...Array(256).keys()]
+      it('for my input', () => {
         const lengths = [18, 1, 0, 161, 255, 137, 254, 252, 14, 95, 165, 33, 181, 168, 2, 188]
-        const hash = knotHash(list, lengths)
+        const hash = knotHash(initKnot(), lengths)
 
         expect(hash.list[0] * hash.list[1]).to.equal(46600)
+      })
+    })
+  })
+
+  describe('Part 2', () => {
+    it('calculates xor on 16 numbers', () => {
+      expect(xorOf([65, 27, 9, 1, 4, 3, 40, 50, 91, 7, 6, 0, 2, 5, 68, 22])).to.equal(64)
+    })
+
+    it('converts to hexadecimal', () => {
+      expect(toHexadecimal([64, 7, 255])).to.equal('4007ff')
+    })
+
+    describe('Solving', () => {
+      it('for my input', () => {
+        const lengths = '18,1,0,161,255,137,254,252,14,95,165,33,181,168,2,188'
+        const hash = knotDenseHash(initKnot(), lengths)
+
+        expect(hash).to.equal('23234babdc6afa036749cfa9b597de1b')
       })
     })
   })
