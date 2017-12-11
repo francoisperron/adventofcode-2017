@@ -19,7 +19,7 @@ const inputString = '116\t1470\t2610\t179\t2161\t2690\t831\t1824\t2361\t1050\t22
   '73\t1620\t81\t1137\t812\t75\t1326\t1355\t1545\t1666\t1356\t1681\t1732\t85\t128\t902\n' +
   '571\t547\t160\t237\t256\t30\t496\t592\t385\t576\t183\t692\t192\t387\t647\t233'
 
-describe('The checksum', () => {
+describe('Day 2 - The checksum', () => {
   describe('Part 1', () => {
     it('calculates checksum for a line', () => {
       expect(minMaxDiff([5, 1, 9, 5])).to.equal(8)

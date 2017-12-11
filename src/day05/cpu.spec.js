@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { readFileSync } from 'fs'
 import { jumpsUntilOutside, strangeJumpsUntilOutside } from './cpu'
 
-describe('The CPU', () => {
+describe('Day 5 - The CPU', () => {
   describe('Part 1', () => {
     describe('Solving', () => {
       it('for the exemple', () => {

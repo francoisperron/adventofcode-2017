@@ -2,7 +2,7 @@ import { describe, it } from 'mocha'
 import { expect } from 'chai'
 import { conditionPasses, highestValueEverHeld, instructionOf, largestValueInRegisters, valueOf } from './cpu'
 
-describe('The CPU\'s instructions', () => {
+describe('Day 8 - The CPU\'s instructions', () => {
   describe('Part 1', () => {
     it('parses an instruction', () => {
       const instruction = instructionOf('b dec 5 if a > 1')

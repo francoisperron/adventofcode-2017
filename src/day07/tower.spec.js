@@ -2,7 +2,7 @@ import { describe, it } from 'mocha'
 import { expect } from 'chai'
 import { bottomProgram, holdingWeigth, parseFile, unbalanced } from './tower'
 
-describe('This program tower', () => {
+describe('Day 7 - This program tower', () => {
   describe('Part 1', () => {
     describe('Solving', () => {
       it('for the example', () => {

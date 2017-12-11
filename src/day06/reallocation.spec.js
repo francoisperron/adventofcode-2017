@@ -7,7 +7,7 @@ import {
 
 const input = [14, 0, 15, 12, 11, 11, 3, 5, 1, 6, 8, 4, 9, 1, 8, 4]
 
-describe('The reallocation', () => {
+describe('Day 6 - The reallocation', () => {
   describe('Part 1', () => {
     it('finds the bank with the most blocks', () => {
       expect(bankWithMostBlocks([0, 2, 7, 0])).to.equal(2)

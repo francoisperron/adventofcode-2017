@@ -2,7 +2,7 @@ import { describe, it } from 'mocha'
 import { expect } from 'chai'
 import { initKnot, knotDenseHash, knotHash, tie, toHexadecimal, xorOf } from './knot-hash'
 
-describe('The knot hash', () => {
+describe('Day 10 - The knot hash', () => {
   describe('Part 1', () => {
     it('reverses element', () => {
       const knot = {list: [0, 1, 2, 3, 4], currentPosition: 0, skipSize: 0}

@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { readFileSync } from 'fs'
 import { hasAnagrams, hasDuplicate, valid, validWithAnagrams } from './passphrase'
 
-describe('Passphrase', () => {
+describe('Day 4 - Passphrase', () => {
   describe('Part 1', () => {
     it('finds duplicates', () => {
       expect(hasDuplicate('aa', ['aa', 'bb', 'cc', 'dd', 'ee'])).to.equal(false)

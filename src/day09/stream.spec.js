@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { readFile } from '../read-file'
 import { analyse, clean, initState } from './stream'
 
-describe('The stream', () => {
+describe('Day 9 - The stream', () => {
   describe('Part 1', () => {
     it('counts { and }', () => {
       const state = initState()

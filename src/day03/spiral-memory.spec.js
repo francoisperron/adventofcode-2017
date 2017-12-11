@@ -4,7 +4,7 @@ import { inSquare, largerThan, offsetInSquare, shortestPathTo } from './spiral-m
 
 const range = (min, max) => Array.from(Array(max - min + 1).keys()).map(n => n + min)
 
-describe('The spiral memory', () => {
+describe('Day 3 - The spiral memory', () => {
   describe('Part 1', () => {
     it('is 1 for even numbers below 10', () => {
       [2, 4, 6, 8].forEach(n => expect(shortestPathTo(n), n).to.equal(1))
