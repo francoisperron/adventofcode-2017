@@ -27,26 +27,30 @@ describe('The 13 - Packet scanner', () => {
 
       it('updates scanners top down', () => {
         const state = {layer: 0, severity: 0, layers: [{depth: 3, range: 4, scannerAt: 0, lastScannerAt: 1}]}
-        expect(tick(state).layers[0].scannerAt).to.equal(1)
-        expect(tick(state).layers[0].lastScannerAt).to.equal(0)
+        tick(state)
+        expect(state.layers[0].scannerAt).to.equal(1)
+        expect(state.layers[0].lastScannerAt).to.equal(0)
       })
 
       it('updates scanners up', () => {
         const state = {layer: 0, severity: 0, layers: [{depth: 3, range: 4, scannerAt: 3, lastScannerAt: 1}]}
-        expect(tick(state).layers[0].scannerAt).to.equal(2)
-        expect(tick(state).layers[0].lastScannerAt).to.equal(3)
+        tick(state)
+        expect(state.layers[0].scannerAt).to.equal(2)
+        expect(state.layers[0].lastScannerAt).to.equal(3)
       })
 
       it('updates scanners middle down', () => {
         const state = {layer: 0, severity: 0, layers: [{depth: 3, range: 4, scannerAt: 2, lastScannerAt: 1}]}
-        expect(tick(state).layers[0].scannerAt).to.equal(3)
-        expect(tick(state).layers[0].lastScannerAt).to.equal(2)
+        tick(state)
+        expect(state.layers[0].scannerAt).to.equal(3)
+        expect(state.layers[0].lastScannerAt).to.equal(2)
       })
 
       it('updates scanners middle up', () => {
         const state = {layer: 0, severity: 0, layers: [{depth: 3, range: 4, scannerAt: 2, lastScannerAt: 3}]}
-        expect(tick(state).layers[0].scannerAt).to.equal(1)
-        expect(tick(state).layers[0].lastScannerAt).to.equal(2)
+        tick(state)
+        expect(state.layers[0].scannerAt).to.equal(1)
+        expect(state.layers[0].lastScannerAt).to.equal(2)
       })
     })
 

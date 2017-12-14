@@ -3,25 +3,29 @@ import { readLines } from '../read-file'
 const arrayOf = (size) => [...Array(size).keys()]
 
 export const severityOf = (file) => {
-  const initState = stateOf(file)
-  return initState.layers.reduce((state) => tick(state), initState).severity
+  const state = stateOf(file)
+  state.layers.forEach((_) => tick(state))
+  return state.severity
 }
 
 export const safePassage = (file) => {
   let state = stateOf(file)
+  let layers = [...state.layers]
   let delay = 0
   while (caught(state)) {
     delay++
-    state = {layer: 0, severity: 0, caught: false, layers: state.layers.map(l => updateScanner(l))}
+    layers.forEach(l => updateScanner(l))
+    state = {layer: 0, severity: 0, caught: false, layers}
+    console.log(state);
   }
   return delay
 }
 
 export const caught = (state) => {
-  let s = state
+  // return state.layers.some(l => tick(state).caught)
   for (let i = 0; i < state.layers.length; i++) {
-    s = tick(s)
-    if (s.caught) {
+    tick(state)
+    if (state.caught) {
       return true
     }
   }
@@ -31,14 +35,33 @@ export const caught = (state) => {
 
 export const tick = (state) => {
   const layer = state.layers[state.layer]
-  const caught = layer.scannerAt === 0 && layer.range !== 0
-  return {
-    layer: state.layer + 1,
-    severity: state.severity + currentSeverity(state),
-    layers: state.layers.map(l => updateScanner(l)),
-    caught
+  state.caught = layer.scannerAt === 0 && layer.range !== 0
+  state.severity += currentSeverity(state)
+  state.layers.forEach(l => updateScanner(l))
+  state.layer++
+  return state
+}
+
+const currentSeverity = (state) => {
+  const currentLayer = state.layers[state.layer]
+  if (currentLayer.scannerAt === 0) {
+    return currentLayer.depth * currentLayer.range
+  }
+  return 0
+}
+
+const updateScanner = (layer) => {
+  if (layer.range === 0) return
+
+  if (layer.scannerAt + 1 === layer.range || (layer.scannerAt < layer.lastScannerAt && layer.scannerAt !== 0)) {
+    layer.lastScannerAt = layer.scannerAt
+    layer.scannerAt--
+  }else {
+    layer.lastScannerAt = layer.scannerAt
+    layer.scannerAt++
   }
 }
+
 
 export const stateOf = (file) => {
   let layers = readLines(file).map(l => layerOf(l))
@@ -63,21 +86,4 @@ const layerOf = (l) => {
     scannerAt: 0,
     lastScannerAt: 0
   }
-}
-
-const currentSeverity = (state) => {
-  const currentLayer = state.layers[state.layer]
-  if (currentLayer.scannerAt === 0) {
-    return currentLayer.depth * currentLayer.range
-  }
-  return 0
-}
-
-const updateScanner = (layer) => {
-  if (layer.range === 0) return layer
-
-  if (layer.scannerAt + 1 === layer.range || (layer.scannerAt < layer.lastScannerAt && layer.scannerAt !== 0)) {
-    return {...layer, scannerAt: layer.scannerAt - 1, lastScannerAt: layer.scannerAt}
-  }
-  return {...layer, scannerAt: layer.scannerAt + 1, lastScannerAt: layer.scannerAt}
 }
