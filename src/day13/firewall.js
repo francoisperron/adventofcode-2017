@@ -16,13 +16,11 @@ export const safePassage = (file) => {
     delay++
     layers.forEach(l => updateScanner(l))
     state = {layer: 0, severity: 0, caught: false, layers}
-    console.log(state);
   }
   return delay
 }
 
 export const caught = (state) => {
-  // return state.layers.some(l => tick(state).caught)
   for (let i = 0; i < state.layers.length; i++) {
     tick(state)
     if (state.caught) {
@@ -56,12 +54,11 @@ const updateScanner = (layer) => {
   if (layer.scannerAt + 1 === layer.range || (layer.scannerAt < layer.lastScannerAt && layer.scannerAt !== 0)) {
     layer.lastScannerAt = layer.scannerAt
     layer.scannerAt--
-  }else {
+  } else {
     layer.lastScannerAt = layer.scannerAt
     layer.scannerAt++
   }
 }
-
 
 export const stateOf = (file) => {
   let layers = readLines(file).map(l => layerOf(l))

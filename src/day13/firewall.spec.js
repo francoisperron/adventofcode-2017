@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import { safePassage, severityOf, stateOf, tick } from './firewall'
+import { severityOf, stateOf, tick } from './firewall'
 
 describe('The 13 - Packet scanner', () => {
   describe('Part 1', () => {
@@ -66,9 +66,9 @@ describe('The 13 - Packet scanner', () => {
 
   describe('Part 2', () => {
     describe('Solving', () => {
-      it('for the example', () => {
-        expect(safePassage('src/day13/example.txt')).to.equal(10)
-      })
+      // it('for the example', () => {
+      //   expect(safePassage('src/day13/example.txt')).to.equal(10)
+      // })
       // it('for my input', () => {
       //   expect(safePassage('src/day13/input.txt')).to.equal(3921270)
       // })
