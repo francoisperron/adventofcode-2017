@@ -22,10 +22,10 @@ const instructionOf = (line) => {
 }
 
 const commands = {
-  'set': (reg, value, state) => state[state.pid].regs[reg] = valueOf(value, state),
-  'add': (reg, value, state) => state[state.pid].regs[reg] += valueOf(value, state),
-  'mul': (reg, value, state) => state[state.pid].regs[reg] *= valueOf(value, state),
-  'mod': (reg, value, state) => state[state.pid].regs[reg] %= valueOf(value, state),
+  'set': (reg, value, state) => { state[state.pid].regs[reg] = valueOf(value, state) },
+  'add': (reg, value, state) => { state[state.pid].regs[reg] += valueOf(value, state) },
+  'mul': (reg, value, state) => { state[state.pid].regs[reg] *= valueOf(value, state) },
+  'mod': (reg, value, state) => { state[state.pid].regs[reg] %= valueOf(value, state) },
   'jgz': (reg, value, state) => jump(reg, value, state),
   'snd': (reg, value, state) => send(reg, value, state),
   'rcv': (reg, value, state) => receive(reg, value, state)

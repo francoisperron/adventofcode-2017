@@ -3,7 +3,6 @@ import { expect } from 'chai'
 import { duet } from './duet'
 import { duet2 } from './duet-part2'
 
-
 describe('Day 18: Duet', () => {
   describe('Part 1', () => {
     describe('Solving', () => {
